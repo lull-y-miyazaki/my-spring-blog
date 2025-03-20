@@ -28,6 +28,23 @@ public class Blog {
 	public Blog() {
 	}
 
+	// 新規作成用のコンストラクタ
+	public Blog(Integer categoryId, Integer userId, String title, String body) {
+		this.categoryId = categoryId;
+		this.userId = userId;
+		this.title = title;
+		this.body = body;
+	}
+
+	// 更新用コンストラクタ
+	public Blog(Integer id, Integer categoryId, Integer userId, String title, String body) {
+		this.id = id;
+		this.categoryId = categoryId;
+		this.userId = userId;
+		this.title = title;
+		this.body = body;
+	}
+
 	// ゲッター
 	public Integer getId() {
 
