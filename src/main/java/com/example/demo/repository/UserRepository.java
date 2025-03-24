@@ -9,4 +9,7 @@ import com.example.demo.entity.User;
 // ※PKはInteger、UUIDだったらStringになる
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+	// クエリメソッド SELECT * FROM users WHERE email = ? AND password = ?;
+	User findByEmailAndPassword(String email, String password);
+
 }
