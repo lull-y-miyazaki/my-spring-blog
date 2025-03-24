@@ -34,17 +34,13 @@ public class CheckLoginAspect {
 
 	// 未ログインの場合ログインページにリダイレクト
 	// `*` は「すべての戻り値・メソッド名」に、`(..)` は「すべての引数の組み合わせ」に
-	@Around("execution(* com.example.demo.controller.UserController.*(..)) ||"
-			+ "execution(* com.example.demo.controller.BlogController.*(..))")
+	@Around("execution(* com.example.demo.controller.BlogController.*(..))")
 	public Object checkLogin(ProceedingJoinPoint jp) throws Throwable {
 
 		if (account == null || account.getName() == null
 				|| account.getName().length() == 0) {
 			System.err.println("ログインしていません!");
 
-			// リダイレクト先を指定する
-			// パラメータを渡すことでログインControllerで
-			// 個別のメッセージをThymeleafに渡すことも可能
 			return "redirect:/login?error=notLoggedIn";
 		}
 		// jp.proceed()でコントローラーの処理を実行
