@@ -5,10 +5,16 @@ INSERT INTO categories (id, name) VALUES
 (3, '勉強');
 
 -- users テーブルにデータを挿入
-INSERT INTO users (id, email, name, password) VALUES
-(1, 'tanaka@aaa.com', '田中太郎', 'test123'),
-(2, 'suzuki@aaa.com', '鈴木一郎', 'test456'),
-(3, 'testuser@com', 'テストユーザー', 'testuser');
+-- INSERT INTO users (id, email, name, password) VALUES
+-- (1, 'tanaka@aaa.com', '田中太郎', 'test123'),
+-- (2, 'suzuki@aaa.com', '鈴木一郎', 'test456'),
+-- (3, 'testuser@com', 'テストユーザー', 'testuser');
+
+-- 上記のようにidを指定してデータを挿入すると、idが重複エラーとなるため下記に修正
+INSERT INTO users (email, name, password) VALUES
+('tanaka@aaa.com', '田中太郎', 'test123'),
+('suzuki@aaa.com', '鈴木一郎', 'test456'),
+('testuser@com', 'テストユーザー', 'testuser');
 
 -- blogs テーブルにデータを挿入
 INSERT INTO blogs (id, category_id, user_id, title, body) VALUES
