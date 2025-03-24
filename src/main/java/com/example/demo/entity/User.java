@@ -12,6 +12,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	private String name;
 	private String email;
 	private String password;
@@ -50,6 +51,17 @@ public class User {
 
 	public String getPassword() {
 		return password;
+	}
+
+	// 登録するユーザーの確認用でtoString()をオーバーライド
+	@Override
+	public String toString() {
+		return "User{" +
+				"id = " + id +
+				", name = '" + name + '\'' +
+				", email = '" + email + '\'' +
+				", password = '" + password + '\'' +
+				'}';
 	}
 
 }
