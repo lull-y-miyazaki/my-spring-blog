@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
@@ -41,9 +42,21 @@ public class UserController {
 		return "redirect:/login";
 	}
 
+	// ログイン画面の表示
 	@GetMapping({ "/", "/login" })
-	public String login() {
+	public String index(
+			@RequestParam(defaultValue = "") String error,
+			Model model) {
+
 		return "login";
+	}
+
+	// ログイン処理
+	@PostMapping("/login")
+	public String login(
+			@RequestBody String entity) {
+
+		return entity;
 	}
 
 }
