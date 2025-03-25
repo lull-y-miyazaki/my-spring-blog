@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>ブログ一覧</title>
+	<meta charset="UTF-8">
+	<title>ブログ一覧画面</title>
 </head>
+
 <body>
-ここはブログ一覧画面です
+
+	<nav class="">
+		<div class="">
+			<a href="/blogs">全商品</a>
+			<a th:each="category:${categories}" th:href="@{/blogs(categoryId=${category.id})}">
+				<span th:text="${category.name}"></span>
+			</a>
+		</div>
+	</nav>
+
+	<div class="">
+		<table class="">
+			<tr class="">
+				<th class="">NO</th>
+				<th class="">タイトル</th>
+				<th class="">カテゴリー</th>
+				<th class="">変更</th>
+				<th class="">削除</th>
+			</tr>
+			<tr th:each="blog:${blogs}" class="">
+				<td th:text="${blog.id}" class=""></td>
+				<td th:text="${blog.title}" class=""></td>
+
+				<!--# Thymeleafはドットでつないだプロパティ呼び出しは、順にget〇〇() をたどっていく仕組み
+				 なので、blog.getCategory().getName()と同じになる #-->
+				<td th:text="${blog.category.name}" class=""></td>
+				<td class="">
+					<form action="/blogs/edit" method="get">
+						<input type="hidden" name="blogId" th:value="${blog.id}">
+						<button class="">変更</button>
+					</form>
+				</td>
+				<td class="">
+					<form action="/blogs/delete" method="post">
+						<input type="hidden" name="blogId" th:value="${blog.id}">
+						<button class="">削除</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+
 </body>
+
 </html>

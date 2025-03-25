@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
+import com.example.demo.model.Account;
 import com.example.demo.repository.UserRepository;
 
 @Controller
@@ -21,6 +22,9 @@ public class UserController {
 
 	@Autowired
 	private HttpSession session;
+
+	@Autowired
+	private Account account;
 
 	// 新規ユーザー登録画面の表示
 	@GetMapping("/users/add")
@@ -52,8 +56,13 @@ public class UserController {
 			@RequestParam(defaultValue = "") String error,
 			Model model) {
 
-		// セッション情報をクリア
+		// セッション情報全てをクリア
 		session.invalidate();
+
+		// クエリパラメータで"notLoggedIn"を受け取った場合
+		if (error.equals("notLoggedIn")) {
+			model.addAttribute("message", "ログインしてください");
+		}
 
 		return "login";
 	}
@@ -80,7 +89,9 @@ public class UserController {
 			return "login";
 		}
 
-		session.setAttribute("user", user);
+		// ログイン情報をAccountに保存
+		account.setId(user.getId());
+		account.setName(user.getName());
 
 		return "redirect:/blogs";
 	}

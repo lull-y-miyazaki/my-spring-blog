@@ -1,10 +1,11 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,11 +15,13 @@ public class Blog {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id; // 記事ID(blogsテーブルのid)
 
-	@Column(name = "category_id") // blogsテーブルのcategory_id
-	private Integer categoryId; // カテゴリーID
+	@ManyToOne // 多対１のリレーション：多くのブログが１つのカテゴリーに属するから
+	@JoinColumn(name = "category_id") // blogsテーブルの外部キー（category_id）
+	private Category category; // リレーション先のエンティティを指定
 
-	@Column(name = "user_id") // blogsテーブルのuser_id
-	private Integer userId; // ユーザーID
+	@ManyToOne
+	@JoinColumn(name = "user_id") // blogsテーブルの外部キー（user_id）
+	private User user;
 
 	private String title;
 
@@ -29,18 +32,18 @@ public class Blog {
 	}
 
 	// 新規作成用のコンストラクタ
-	public Blog(Integer categoryId, Integer userId, String title, String body) {
-		this.categoryId = categoryId;
-		this.userId = userId;
+	public Blog(Category category, User user, String title, String body) {
+		this.category = category;
+		this.user = user;
 		this.title = title;
 		this.body = body;
 	}
 
 	// 更新用コンストラクタ
-	public Blog(Integer id, Integer categoryId, Integer userId, String title, String body) {
+	public Blog(Integer id, Category category, User user, String title, String body) {
 		this.id = id;
-		this.categoryId = categoryId;
-		this.userId = userId;
+		this.category = category;
+		this.user = user;
 		this.title = title;
 		this.body = body;
 	}
@@ -51,14 +54,14 @@ public class Blog {
 		return id;
 	}
 
-	public Integer getCategoryId() {
+	public Category getCategory() {
 
-		return categoryId;
+		return category;
 	}
 
-	public Integer getUserId() {
+	public User getUser() {
 
-		return userId;
+		return user;
 	}
 
 	public String getTitle() {

@@ -20,7 +20,7 @@ public class Account {
 		this.name = name;
 	}
 
-	// ゲッター＆セッター
+	// ゲッター
 	public String getName() {
 
 		return name;
@@ -31,8 +31,24 @@ public class Account {
 		return id;
 	}
 
+	// セッター
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	// ログイン状態を確認するメソッド（未使用）
+	public boolean isLoggedIn() {
+		return id != null && name != null && !name.isEmpty();
+	}
+
+	// デバッグ・ログ出力用
+	@Override
+	public String toString() {
+		return "Account{id = " + id + ", name = '" + name + "'}";
 	}
 
 }
