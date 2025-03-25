@@ -10,12 +10,16 @@
 
 	<nav class="">
 		<div class="">
-			<a href="/blogs">全商品</a>
+			<a href="/blogs">全ブログ</a>
 			<a th:each="category:${categories}" th:href="@{/blogs(categoryId=${category.id})}">
 				<span th:text="${category.name}"></span>
 			</a>
 		</div>
 	</nav>
+
+	<h2>
+		<a href="/blogs/add">新規記事作成</a>
+	</h2>
 
 	<div class="">
 		<table class="">

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ブログ新規作成画面</title>
+</head>
+
+<body>
+
+	<h2>新規記事作成</h2>
+
+	<form action="/blogs/add" method="post">
+
+		<!--/* blogTableテンプレートの再利用 */-->
+		<span th:replace="~{blogTable}"></span>
+
+		<button>新規作成</button>
+	</form>
+</body>
+
+</html>
