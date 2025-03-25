@@ -1,0 +1,27 @@
+<table class="">
+
+	<tr class="">
+		<th class="">カテゴリー</th>
+		<td class="">
+
+			<label th:each="category:${categories}">
+				<input type="radio" name="categoryId" th:value="${category.id}">
+				<span th:text="${category.name}"></span>
+			</label>
+
+		</td>
+	</tr>
+	<tr class="">
+		<th class="">タイトル</th>
+		<td class="">
+			<input type="text" name="title" class="" />
+		</td>
+	</tr>
+	<tr class="">
+		<th class="">内容</th>
+		<td class="">
+			<input type="text" name="content" class="" />
+		</td>
+	</tr>
+
+</table>
