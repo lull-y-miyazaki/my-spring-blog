@@ -15,13 +15,13 @@ INSERT INTO users (email, name, password) VALUES
 ('tanaka@aaa.com', '田中太郎', 'test123'),
 ('suzuki@aaa.com', '鈴木一郎', 'test456'),
 ('testuser@com', 'テストユーザー', 'testuser'),
-('test@com', 'テスト', 'testuser');
+('test@com', 'テストマン', 'testuser');
 
 -- blogs テーブルにデータを挿入
 --INSERT INTO blogs (id, category_id, user_id, title, body) VALUES
 --(1, 1, 1, '見積もり', '見積もり金額を明日までに提出');
 
-INSERT INTO blogs (category_id, user_id, title, body) VALUES
+INSERT INTO blogs (category_id, user_id, title, content) VALUES
 (1, 1, '見積もり', '見積もり金額を明日までに提出'),
 (2, 1, 'ゲームの作り方', 'ゲームの作り方を明日までに考える'),
 (3, 1, 'コーヒー豆の煎り方', 'コーヒー豆の煎り方を明日までにマスターする'),

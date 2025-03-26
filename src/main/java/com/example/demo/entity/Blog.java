@@ -25,27 +25,27 @@ public class Blog {
 
 	private String title;
 
-	private String body;
+	private String content;
 
 	// 引数なしコンストラクタ
 	public Blog() {
 	}
 
 	// 新規作成用のコンストラクタ
-	public Blog(Category category, User user, String title, String body) {
+	public Blog(Category category, User user, String title, String content) {
 		this.category = category;
 		this.user = user;
 		this.title = title;
-		this.body = body;
+		this.content = content;
 	}
 
 	// 更新用コンストラクタ
-	public Blog(Integer id, Category category, User user, String title, String body) {
+	public Blog(Integer id, Category category, User user, String title, String content) {
 		this.id = id;
 		this.category = category;
 		this.user = user;
 		this.title = title;
-		this.body = body;
+		this.content = content;
 	}
 
 	// ゲッター
@@ -69,8 +69,8 @@ public class Blog {
 		return title;
 	}
 
-	public String getBody() {
+	public String getContent() {
 
-		return body;
+		return content;
 	}
 }
