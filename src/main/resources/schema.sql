@@ -23,5 +23,7 @@ CREATE TABLE blogs (
     category_id INTEGER,
     user_id INTEGER,
     title VARCHAR(255),
-    body TEXT
+--    body TEXT,
+--    設計書と合わせてcontentに変更
+    content TEXT
 );
