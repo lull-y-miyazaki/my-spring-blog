@@ -25,8 +25,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Blog> blogs;
 
-	// コンストラクタ
-	public User() {
+	// デフォルトコンストラクタ
+	// Hibernate用（プライベートで外からはnewさせない）
+	protected User() {
 	}
 
 	// 新規登録用のコンストラクタ
@@ -73,3 +74,12 @@ public class User {
 	}
 
 }
+
+/**
+ * なぜデフォルトコンストラクタが必要なのか？
+ Hibernate（JPAの裏側で動いているORMライブラリ） は
+「データベースのレコード → Javaオブジェクト」へ変換するとき、必ず下記のように動く
+ ①まず 引数なしのコンストラクタ でオブジェクトだけ new する
+ ②そのあと、フィールド（プロパティ）に値をセットする
+ * 
+ */
