@@ -1,27 +1,31 @@
 <table class="">
 
-	<tr class="">
-		<th class="">カテゴリー</th>
-		<td class="">
+    <tr class="">
+        <th class="">カテゴリー</th>
+        <td class="">
 
-			<label th:each="category:${categories}">
-				<input type="radio" name="categoryId" th:value="${category.id}">
-				<span th:text="${category.name}"></span>
-			</label>
+            <label th:each="category:${categories}">
+                <input type="radio" name="categoryId" th:value="${category.id}" 
+				th:checked="${blog != null and category.id == blog.category?.id}" />
+                <span th:text="${category.name}"></span>
+            </label>
 
-		</td>
-	</tr>
-	<tr class="">
-		<th class="">タイトル</th>
-		<td class="">
-			<input type="text" name="title" class="" />
-		</td>
-	</tr>
-	<tr class="">
-		<th class="">内容</th>
-		<td class="">
-			<textarea name="content" class=""></textarea>
-		</td>
-	</tr>
+        </td>
+    </tr>
+    <tr class="">
+        <th class="">タイトル</th>
+        <td class="">
+            <input type="text" name="title" class="" th:value="${blog != null ? blog.title : ''}" />
+        </td>
+    </tr>
+    <tr class="">
+        <th class="">内容</th>
+        <td class="">
+            <textarea name="content" class="" th:text="${blog != null ? blog.content : ''}"></textarea>
+        </td>
+    </tr>
 
 </table>
+
+<!-- 編集モードの場合のみblogIdを隠しフィールドとして追加 -->
+<input type="hidden" name="blogId" th:if="${blog != null}" th:value="${blog.id}" />
