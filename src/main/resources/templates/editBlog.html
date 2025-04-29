@@ -2,48 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>ブログ変更画面</title>
+    <meta charset="UTF-8">
+    <title>ブログ変更画面</title>
 </head>
 
 <body>
-	<h2>ここはブログ変更画面です</h2>
+    <h2>ここはブログ変更画面です</h2>
 
-	<form action="/blogs/update" method="post">
+    <form action="/blogs/update" method="post">
+        <!--/* blogTableテンプレートの再利用 */-->
+        <span th:replace="~{blogTable}"></span>
 
-		<table class="">
-
-			<tr class="">
-				<th class="">カテゴリー</th>
-				<td class="">
-
-					<label th:each="category : ${categories}">
-						<!--# ?.はnullセーフ演算子なのでnullでもエラーにならない #-->
-						<input type="radio" name="categoryId" th:value="${category.id}"
-							th:checked="${category.id == blog.category?.id}" />
-						<span th:text="${category.name}"></span>
-					</label>
-
-				</td>
-			</tr>
-			<tr class="">
-				<th class="">タイトル</th>
-				<td class="">
-					<input type="text" name="title" th:value="${blog.title}" class="" />
-				</td>
-			</tr>
-			<tr class="">
-				<th class="">内容</th>
-				<td class="">
-					<textarea name="content" th:text="${blog.content}"></textarea>
-				</td>
-			</tr>
-
-		</table>
-		
-		<input type="hidden" name="blogId" th:value="${blog.id}" />
-		<button>変更</button>
-	</form>
+        <button>変更</button>
+    </form>
 </body>
 
 </html>
